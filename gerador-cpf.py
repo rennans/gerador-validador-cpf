@@ -26,4 +26,5 @@ digito_2 = (resultado_digito_2 * 10) % 11
 digito_2 = digito_2 if digito_2 <= 9 else 0
 
 cpf = nove_digitos + str(digito_1) + str(digito_2)
+print(cpf)
 

@@ -3,22 +3,24 @@ import re
 
 entrada = input("CPF: ")
 cpf = re.sub(
-    r'[^0-9]', '',
+    r'[^0-9]', '',  # Remove tudo que não for número
     entrada
-    )
+)
 
-if not cpf:
-    print('CPF inválido: não foi informado nenhum dígito ou caractere inválido')
+if not cpf: # Se não tiver nenhum dígito
+    print('CPF inválido: não foi informado nenhum dígito ou caractere inválido')  
     exit()
 
-cpf_formatado = cpf.replace('.', '').replace('-', '')
-primeiro_caractere = cpf_formatado[0]
+cpf_formatado = cpf.replace('.', '').replace('-', '') # Remove pontos e traços
+
+primeiro_caractere = cpf_formatado[0] 
 caractere_repetido = primeiro_caractere * len(cpf_formatado)
-if caractere_repetido == cpf_formatado:
+
+if caractere_repetido == cpf_formatado: # Se todos os dígitos forem iguais
     print('CPF inválido: todos os dígitos são iguais')
     exit()
 
-nove_digitos = cpf_formatado[:9]
+nove_digitos = cpf_formatado[:9] 
 contador_regressivo_1 = 10
 resultado_digito_1 = 0
 
@@ -40,7 +42,7 @@ for digito in dez_digitos:
 digito_2 = (resultado_digito_2 * 10) % 11
 digito_2 = digito_2 if digito_2 <= 9 else 0
 
-ultimos_dois_digitos = cpf_formatado[-2:]
+ultimos_dois_digitos = str(digito_1) + str(digito_2)
 
 if len(cpf_formatado) >= 11:
     if int(ultimos_dois_digitos[0]) == digito_1 and int(ultimos_dois_digitos[1]) == digito_2:
